@@ -16,8 +16,10 @@ console.log(scoreText);
 // Practice Area
 
 let getTip = function (total, tipPercent = 0.15) {
-  return total * tipPercent;
+  return `A ${tipPercent * 100}% tip on a $${total} dollar bill would be $${
+    total * tipPercent
+  }`;
 };
 
 console.log(getTip(100));
-console.log(getTip(50, 0.2));
+console.log(getTip(40, 0.25));
