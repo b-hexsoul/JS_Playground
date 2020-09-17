@@ -11,6 +11,10 @@ const notes = [
     title: "Office modification",
     body: "Get a new seat",
   },
+  {
+    title: "Dream trip",
+    body: "I would like to go to Japan",
+  },
 ];
 
 const findNote = function (notes, noteTitle) {
@@ -51,3 +55,14 @@ const findNote2 = function (notes, noteTitle) {
 
 const note2 = findNote2(notes, "office modification");
 console.log(note2);
+
+const findNotes = function (notes, query) {
+  return notes.filter(function (note, index) {
+    const isTitleMatch = note.title.toLowerCase().includes(query.toLowerCase());
+    const isBodyMatch = note.body.toLowerCase().includes(query.toLowerCase());
+    return isTitleMatch || isBodyMatch;
+  });
+};
+
+let tripNotes = findNotes(notes, "to go to");
+console.log(tripNotes);
