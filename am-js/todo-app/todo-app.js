@@ -17,10 +17,6 @@ const todos = [
   },
 ];
 
-document.querySelector("#add-todo").addEventListener("click", function (e) {
-  console.log("I am adding a todo");
-});
-
 // You have 2 todos left (p element);
 const incompleteTodos = todos.filter(function (todo) {
   return !todo.completed;
@@ -35,6 +31,15 @@ todos.forEach(function (todo) {
   let p = document.createElement("p");
   p.textContent = todo.text;
   document.querySelector("body").appendChild(p);
+});
+
+document.querySelector("#add-todo").addEventListener("click", function (e) {
+  console.log("I am adding a todo");
+});
+
+// listen for todo text change
+document.querySelector("#new-todo").addEventListener("input", function (e) {
+  console.log(e.target.value);
 });
 
 // // Removing an element from a list of paragraphs if it includes "the"
