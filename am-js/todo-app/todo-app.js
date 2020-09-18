@@ -17,7 +17,7 @@ const todos = [
   },
 ];
 
-document.querySelector("button").addEventListener("click", function (e) {
+document.querySelector("#add-todo").addEventListener("click", function (e) {
   console.log("I am adding a todo");
 });
 
@@ -26,7 +26,7 @@ const incompleteTodos = todos.filter(function (todo) {
   return !todo.completed;
 });
 
-let summary = document.createElement("p");
+let summary = document.createElement("h2");
 summary.textContent = `You have ${incompleteTodos.length} todos left`;
 document.querySelector("body").appendChild(summary);
 
