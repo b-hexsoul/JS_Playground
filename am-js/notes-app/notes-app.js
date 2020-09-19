@@ -50,26 +50,31 @@ document.querySelector("#create-note").addEventListener("click", function (e) {
   e.target.textContent = "The button was clicked";
 });
 
-document.querySelector("#remove-all").addEventListener("click", function (e) {
-  document.querySelectorAll(".note").forEach(function (note) {
-    note.remove();
-  });
+// Using checkbox
+document.querySelector("#for-fun").addEventListener("change", function (e) {
+  // when using checkbox, e.target.checked returns a boolean value
+  console.log(e.target.checked);
 });
 
-// Query and remove
-// const p = document.querySelector("p");
-// console.log(p);
-// p.remove();
+/*
 
-// Query all and remove
-// const ps = document.querySelectorAll("p");
-// ps.forEach(function (p) {
-//   p.textContent = "******";
-//   // console.log(p.textContent);
-//   // p.remove();
+
+
+
+
+
+
+
+
+
+
+*/
+// // Submit is the only event listener used with forms
+// document.querySelector("#name-form").addEventListener("submit", function (e) {
+//   //first cancel default behavior of form - which is full browser refresh
+//   e.preventDefault();
+//   // accessing e.target gets us to the DOM element for the form - allows us to access the fields we set in the form
+//   console.log(e.target.elements.firstName.value);
+//   // once we do something with the value we can reset the form as below
+//   e.target.elements.firstName.value = "";
 // });
-
-// Adding a new element
-// const newParagraph = document.createElement("p");
-// newParagraph.textContent = "This is a new paragraph from JavaScript";
-// document.querySelector("body").appendChild(newParagraph);

@@ -7,8 +7,16 @@
   </head>
   <body>
     <h1>So many things to do</h1>
-    <input id="new-todo" type="text" placeholder="Add a todo" />
-    <button id="add-todo">Add something Todo</button>
+    <!-- filter text field -->
+    <input id="search-text" type="text" placeholder="Filter your todos" />
+    <label><input id="hide-completed" type="checkbox" /> Hide Completed Todos</label>
+    <div id="todos"></div>
+    <!-- submit a todo -->
+    <form id="new-todo-form" style="margin-bottom: 2rem">
+      <input type="text" name="newTodo" placeholder="Enter something to do" />
+      <button>Add Todo</button>
+    </form>
+
     <script src="todo-app.js"></script>
   </body>
 </html>
