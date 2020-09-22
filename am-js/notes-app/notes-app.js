@@ -50,12 +50,11 @@ document.querySelector("#create-note").addEventListener("click", function (e) {
   e.target.textContent = "The button was clicked";
 });
 
-// Using checkbox
-document.querySelector("#for-fun").addEventListener("change", function (e) {
-  // when using checkbox, e.target.checked returns a boolean value
-  console.log(e.target.checked);
+// Using select dropdown
+document.querySelector("#filter-by").addEventListener("change", function (e) {
+  //Set value="" within the option in html.
+  console.log(e.target.value);
 });
-
 /*
 
 
@@ -77,4 +76,10 @@ document.querySelector("#for-fun").addEventListener("change", function (e) {
 //   console.log(e.target.elements.firstName.value);
 //   // once we do something with the value we can reset the form as below
 //   e.target.elements.firstName.value = "";
+// });
+
+// // Using checkbox
+// document.querySelector("#for-fun").addEventListener("change", function (e) {
+//   // when using checkbox, e.target.checked returns a boolean value
+//   console.log(e.target.checked);
 // });
