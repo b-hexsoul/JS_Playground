@@ -11,6 +11,8 @@ document.getElementById("loan-form").addEventListener("submit", calculateResults
 
 // Calculate Results
 function calculateResults(e) {
+  hideLoadingResults();
+
   const principal = parseFloat(amount.value);
   const calculatedInterest = parseFloat(interest.value) / 100 / 12;
   const calculatedPayments = parseFloat(years.value) * 12;
@@ -23,8 +25,56 @@ function calculateResults(e) {
     monthlyPaymentEl.value = monthly.toFixed(2);
     totalPaymentEl.value = (monthly * calculatedPayments).toFixed(2);
     totalInterestEl.value = (monthly * calculatedPayments - principal).toFixed(2);
+
+    loadingTime();
   } else {
-    console.log("Please Check numbers");
+    showError("Please check you numbers");
+    hideLoadingResults();
   }
   e.preventDefault();
+}
+
+// Show Error
+function showError(error) {
+  // Create a div
+  const errorDiv = document.createElement("div");
+
+  const card = document.querySelector(".card");
+  const heading = document.querySelector(".heading");
+
+  // Add Class
+  errorDiv.className = "alert alert-danger";
+
+  // Create text node
+  errorDiv.appendChild(document.createTextNode(error));
+
+  // Insert error above heading
+  card.insertBefore(errorDiv, heading);
+
+  // Clear error after 3 seconds
+  setTimeout(clearError, 3000);
+}
+
+// Clear Error
+function clearError() {
+  document.querySelector(".alert").remove();
+}
+
+// Brandon's Initial code for loading gif and results popup
+function hideLoadingResults() {
+  document.querySelector("#results").style.display = "none";
+  document.querySelector("#loading").style.display = "none";
+}
+
+function loadingTime() {
+  let time = 0;
+  let timer = setInterval(function () {
+    time++;
+    document.querySelector("#loading").style.display = "block";
+    if (time === 3) {
+      clearInterval(timer);
+      document.querySelector("#loading").style.display = "none";
+      document.querySelector("#results").style.display = "block";
+    }
+  }, 1000);
 }
