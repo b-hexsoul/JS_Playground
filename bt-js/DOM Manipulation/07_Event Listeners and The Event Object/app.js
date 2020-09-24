@@ -1,13 +1,13 @@
-// document.querySelector('.clear-tasks').addEventListener('click', function(e){
-//   console.log('Hello World');
+// document.querySelector(".clear-tasks").addEventListener("click", function (e) {
+//   console.log("Hello World");
 
-//   //e.preventDefault();
+//   e.preventDefault();
 // });
 
-document.querySelector('.clear-tasks').addEventListener('click', onClick);
+document.querySelector(".clear-tasks").addEventListener("click", onClick);
 
-function onClick(e){
-  //console.log('Clicked');
+function onClick(e) {
+  // console.log("Clicked");
 
   let val;
 
