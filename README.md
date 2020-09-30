@@ -4,7 +4,10 @@
   <!-- <a href="https://github.com/othneildrew/Best-README-Template">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a> -->
-
+  <p align="center">
+    <img src="/logo.png">
+  </p>
+  <br />
   <h3 align="center">JavaScript Practice</h3>
 
   <p align="center">
@@ -28,10 +31,6 @@
 <!-- ABOUT THE PROJECT -->
 
 ## About The Repo
-
-<p align="center">
-  <img src="/logo.png">
-</p>
 
 This repository is intended to house all my JS practice files to not only display concepts that I have learned, but as a place I can come to in my spare time, away from my computer, to review code. It consists of two main folders from two JavaScript courses I am completing.
 
