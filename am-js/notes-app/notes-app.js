@@ -1,44 +1,12 @@
 // DOM - Document Object Model
-const notes = [
-  {
-    title: "My next trip",
-    body: "I would like to go to Spain",
-  },
-  {
-    title: "Habits to work on",
-    body: "Exercise. Eating a bit better.",
-  },
-  {
-    title: "Office modification",
-    body: "Get a new seat",
-  },
-  {
-    title: "Dream trip",
-    body: "I would like to go to Japan",
-  },
-];
+const notes = getSavedNotes();
 
 const filters = {
   searchText: "",
 };
 
-const renderNotes = function (notes, filters) {
-  const filteredNotes = notes.filter(function (note) {
-    return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
-  });
-
-  //clearing an element
-  document.querySelector("#notes").innerHTML = "";
-
-  //filtering the notes
-  filteredNotes.forEach(function (note) {
-    const noteEl = document.createElement("p");
-    noteEl.textContent = note.title;
-    document.querySelector("#notes").appendChild(noteEl);
-  });
-};
-
 renderNotes(notes, filters);
+
 // IMPORTANT - using input text field and grab that text value **filtering notes based on text
 // using the "input" event allows us to access in realtime
 document.querySelector("#search-text").addEventListener("input", function (e) {
@@ -47,7 +15,13 @@ document.querySelector("#search-text").addEventListener("input", function (e) {
 });
 
 document.querySelector("#create-note").addEventListener("click", function (e) {
-  e.target.textContent = "The button was clicked";
+  
+  notes.push({
+    title: '',
+    body: ''
+  })
+  localStorage.setItem('notes', JSON.stringify(notes));
+  renderNotes(notes, filters);
 });
 
 // Using select dropdown

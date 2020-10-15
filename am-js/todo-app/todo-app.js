@@ -1,55 +1,9 @@
-const todos = [
-  {
-    text: "buy food",
-    completed: true,
-  },
-  {
-    text: "do hw",
-    completed: false,
-  },
-  {
-    text: "watch nfl",
-    completed: true,
-  },
-  {
-    text: "practice js",
-    completed: false,
-  },
-];
+const todos = getSavedTodos();
 
 // filter object for render function
 const filters = {
   searchText: "",
   hideCompleted: false,
-};
-
-const renderTodos = function (todos, filters) {
-  // get list of filtered todos
-  let filteredTodos = todos.filter(function (todo) {
-    const searchTextMatch = todo.text.toLowerCase().includes(filters.searchText.toLowerCase());
-    const hideCompletedMatch = filters.hideCompleted ? !todo.completed : true;
-
-    return searchTextMatch && hideCompletedMatch;
-  });
-
-  // creates a summary element of how many todos are not completed
-  const incompleteTodos = filteredTodos.filter(function (todo) {
-    return !todo.completed;
-  });
-
-  // Delete current todos
-  document.querySelector("#todos").innerHTML = "";
-
-  const summary = document.createElement("h2");
-  summary.textContent = `You have ${incompleteTodos.length} todos left`;
-  document.querySelector("#todos").appendChild(summary);
-
-  // add current filtered todos
-  filteredTodos.forEach(function (todo) {
-    const todoEl = document.createElement("p");
-    todoEl.textContent = todo.text;
-    document.querySelector("#todos").appendChild(todoEl);
-  });
 };
 
 renderTodos(todos, filters);
@@ -63,6 +17,9 @@ document.querySelector("#new-todo-form").addEventListener("submit", function (e)
     text: e.target.elements.newTodo.value,
     completed: false,
   });
+
+  saveTodos();
+
   // rerender the application
   renderTodos(todos, filters);
   e.target.elements.newTodo.value = "";
