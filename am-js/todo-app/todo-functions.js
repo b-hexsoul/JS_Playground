@@ -35,6 +35,26 @@ const renderTodos = function (todos, filters) {
   });
 };
 
+// Remove Todo
+const removeTodo = function (id) {
+  const todoIndex = todos.findIndex(function (todo) {
+    return todo.id === id
+  })
+
+  if (todoIndex > -1 ) {
+    todos.splice(todoIndex, 1);
+  }
+}
+
+const toggleTodo = function (id) {
+    const todo = todos.find(function (todo) {
+      return todo.id === id;
+    })
+    if (todo !== undefined) {
+      todo.completed = !todo.completed
+    }
+  } 
+
 // Get the DOM elements for an individual note
 const generateTodoDOM = function (todo) {
   const div = document.createElement('div');
@@ -44,6 +64,12 @@ const generateTodoDOM = function (todo) {
   
   // Setup todo Checkbox
   checkbox.setAttribute('type', 'checkbox');
+  checkbox.checked = todo.completed
+  checkbox.addEventListener('change', function () {
+    toggleTodo(todo.id);
+    saveTodos(todos);
+    renderTodos(todos, filters);
+  } )
   div.appendChild(checkbox);
 
   // Setup todo text
@@ -51,6 +77,11 @@ const generateTodoDOM = function (todo) {
   div.appendChild(textEl);
   
   removeBtn.textContent = 'x';
+  removeBtn.addEventListener('click', function() {
+    removeTodo(todo.id);
+    saveTodos(todos);
+    renderTodos(todos, filters);
+  })
   div.appendChild(removeBtn);
   
   return div;

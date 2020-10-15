@@ -1,5 +1,5 @@
 // DOM - Document Object Model
-const notes = getSavedNotes();
+let notes = getSavedNotes();
 
 const filters = {
   searchText: "",
@@ -15,13 +15,14 @@ document.querySelector("#search-text").addEventListener("input", function (e) {
 });
 
 document.querySelector("#create-note").addEventListener("click", function (e) {
-  
+  let id = uuidv4()
   notes.push({
+    id: id,
     title: '',
     body: ''
   })
-  localStorage.setItem('notes', JSON.stringify(notes));
-  renderNotes(notes, filters);
+  saveNotes(notes);
+  location.assign(`./edit.html#${id}`)
 });
 
 // Using select dropdown
@@ -29,6 +30,38 @@ document.querySelector("#filter-by").addEventListener("change", function (e) {
   //Set value="" within the option in html.
   console.log(e.target.value);
 });
+
+window.addEventListener('storage', function (e) {
+  if (e.key === 'notes') {
+    notes = JSON.parse(e.newValue);
+    renderNotes(notes, filters)
+  };
+})
+
+// if provided no arguments then it is current date in time. 
+// Unix Epoch - January 1st 1970 00:00:00
+// 0 
+const now = new Date();
+const timestamp = now.getTime();
+
+const myDate = new Date(timestamp);
+console.log(myDate.getFullYear())
+// console.log(`Year: ${now.getFullYear()}`)
+// console.log(`Month: ${now.getMonth()}`)
+// console.log(`Day of month: ${now.getDate()}`)
+// console.log(`Hour: ${now.getHours()}`)
+// console.log(`Minutes: ${now.getMinutes()}`)
+// console.log(`Seconds: ${now.getSeconds()}`)
+const date1 = new Date('January 19, 1990')
+const date2 = new Date('October 2, 1986')
+
+const timestamp1 = date1.getTime();
+const timestamp2 = date2.getTime();
+
+timestamp1 < timestamp2 ? console.log(timestamp1.toString()) : console.log(timestamp2.toString());
+
+
+
 /*
 
 

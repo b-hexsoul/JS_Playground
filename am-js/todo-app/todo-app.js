@@ -14,6 +14,7 @@ document.querySelector("#new-todo-form").addEventListener("submit", function (e)
   e.preventDefault();
   // add new item to the todos array with that text data (completed value of false)
   todos.push({
+    id: uuidv4(),
     text: e.target.elements.newTodo.value,
     completed: false,
   });
@@ -35,21 +36,10 @@ document.querySelector("#hide-completed").addEventListener("change", function (e
   filters.hideCompleted = e.target.checked;
   renderTodos(todos, filters);
 });
-// 1. Create a checkbox and setup event listener -> "hide completed"
-// 2. Create a new hideCompleted filter (default is false)
-// 3. Update hideCompleted and rerender list on checkbox change
-// 4. Setup renderTodos to remove completed items
+
 
 /*
-
-
-
-
-
 Notes Below
-
-
-
 
 
 
