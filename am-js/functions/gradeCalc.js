@@ -2,6 +2,10 @@
 // A 90-100, B 80-89, C 70-79, D 60-69, F 0-59
 
 const gradeCalc = function (studentScore, possibleScore) {
+  if (typeof studentScore !== 'number' || typeof possibleScore !== 'number') {
+    throw Error('Please input a number');
+  }
+
   let percent = Math.floor((studentScore / possibleScore) * 100);
   let letterGrade = "";
 
@@ -31,7 +35,9 @@ const gradeCalc = function (studentScore, possibleScore) {
   }
 };
 
-console.log(gradeCalc(50, 100));
-console.log(gradeCalc(50, 50));
-console.log(gradeCalc(50, 60));
-console.log(gradeCalc(50, 80));
+try {
+  const result = gradeCalc('abc', 2) 
+  console.log(result)
+} catch(e) {
+  console.log(e.message)
+}

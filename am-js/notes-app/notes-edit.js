@@ -1,26 +1,34 @@
+'use strict'
+
 const noteTitleEl = document.getElementById('note-title')
 const noteBodyEl = document.getElementById('note-body')
 const removeBtn = document.getElementById('removeBtn')
 const saveBtn = document.getElementById('saveBtn');
+const editedEl = document.getElementById('lastEdited');
 
 const noteId = location.hash.substring(1);
 let notes = getSavedNotes();
 let note = notes.find(note => note.id === noteId);
 
-if (note === undefined) {
+if (!note) {
   location.assign('./index.html')
 }
 
 noteTitleEl.value = note.title;
 noteBodyEl.value = note.body;
+editedEl.textContent = generateLastEdited(note.updatedAt);
 
 noteTitleEl.addEventListener('input', function () {
   note.title = noteTitleEl.value
+  note.updatedAt = moment().valueOf();
+  editedEl.textContent = generateLastEdited(note.updatedAt);
   saveNotes(notes);
 })
 
 noteBodyEl.addEventListener('input', function () {
   note.body = noteBodyEl.value
+  note.updatedAt = moment().valueOf();
+  editedEl.textContent = generateLastEdited(note.updatedAt);
   saveNotes(notes);
 })
 
@@ -41,11 +49,12 @@ window.addEventListener('storage', function(e) {
     notes = JSON.parse(e.newValue);
     note = notes.find(note => note.id === noteId);
 
-    if (note === undefined) {
+    if (!note) {
       location.assign('./index.html')
     }
     
     noteTitleEl.value = note.title;
     noteBodyEl.value = note.body;
+    editedEl.textContent = generateLastEdited(note.updatedAt);
   }
 })

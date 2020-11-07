@@ -1,8 +1,11 @@
+'use strict'
+
 // DOM - Document Object Model
 let notes = getSavedNotes();
 
 const filters = {
   searchText: "",
+  sortBy: 'byEdited',
 };
 
 renderNotes(notes, filters);
@@ -16,10 +19,13 @@ document.querySelector("#search-text").addEventListener("input", function (e) {
 
 document.querySelector("#create-note").addEventListener("click", function (e) {
   let id = uuidv4()
+  const timeStamp = moment().valueOf();
   notes.push({
     id: id,
     title: '',
-    body: ''
+    body: '',
+    createdAt: timeStamp,
+    updatedAt: timeStamp,  
   })
   saveNotes(notes);
   location.assign(`./edit.html#${id}`)
@@ -28,7 +34,8 @@ document.querySelector("#create-note").addEventListener("click", function (e) {
 // Using select dropdown
 document.querySelector("#filter-by").addEventListener("change", function (e) {
   //Set value="" within the option in html.
-  console.log(e.target.value);
+  filters.sortBy = e.target.value;
+  renderNotes(notes, filters);
 });
 
 window.addEventListener('storage', function (e) {
@@ -38,37 +45,10 @@ window.addEventListener('storage', function (e) {
   };
 })
 
-// if provided no arguments then it is current date in time. 
-// Unix Epoch - January 1st 1970 00:00:00
-// 0 
-const now = new Date();
-const timestamp = now.getTime();
-
-const myDate = new Date(timestamp);
-console.log(myDate.getFullYear())
-// console.log(`Year: ${now.getFullYear()}`)
-// console.log(`Month: ${now.getMonth()}`)
-// console.log(`Day of month: ${now.getDate()}`)
-// console.log(`Hour: ${now.getHours()}`)
-// console.log(`Minutes: ${now.getMinutes()}`)
-// console.log(`Seconds: ${now.getSeconds()}`)
-const date1 = new Date('January 19, 1990')
-const date2 = new Date('October 2, 1986')
-
-const timestamp1 = date1.getTime();
-const timestamp2 = date2.getTime();
-
-timestamp1 < timestamp2 ? console.log(timestamp1.toString()) : console.log(timestamp2.toString());
 
 
 
 /*
-
-
-
-
-
-
 
 
 
